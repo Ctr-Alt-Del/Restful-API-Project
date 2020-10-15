@@ -6,20 +6,17 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./routes/products');
 // const orderRoutes = require('./routes/orders');
+const usersRoutes = require('./routes/users');
+const authRoutes = require('./routes/auth');
 
-mongoose.connect('mongodb+srv://Xavier:MongoDB4121@cluster0.cumgm.mongodb.net/<dbname>?retryWrites=true&w=majority', {
-    useUnifiedTopology: true, 
-    useNewUrlParser: 'true'
-},{
-    useMongoClient: true
-} 
-);
-mongoose.Promise = global.Promise;
 
+//@desc use express-json
 app.use(morgan('dev'));
-app.use(express.static('uploads'));
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(express.json());
+app.use('/uploads',express.static('uploads'));
+
+//@desc moved database conecttion to config folder
+require('./config/db');
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -32,8 +29,11 @@ app.use((req, res, next) => {
 });
 
 
-app.use('/products', productRoutes);
-// app.use('/orders', orderRoutes);
+//@desc define routes
+// app.use('/api/orders', orderRoutes);
+app.use('/api/auth',authRoutes );
+app.use('/api/products', productRoutes);
+app.use('/api/users', usersRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');
@@ -50,4 +50,7 @@ app.use((error, req, res, next) => {
     });
 });
 
-module.exports = app;                                           
+//@desc:listening to port 
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Server running on port ${port} 🔥`));
+                                         
