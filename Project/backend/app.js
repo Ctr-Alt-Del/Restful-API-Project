@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const productRoutes = require('./routes/products');
-// const orderRoutes = require('./routes/orders');
+const orderRoutes = require('./routes/orders');
 const usersRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
 
