@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 
 
 //@desc define routes
-// app.use('/api/orders', orderRoutes);
+app.use('/api/orders', orderRoutes);
 app.use('/api/auth',authRoutes );
 app.use('/api/products', productRoutes);
 app.use('/api/users', usersRoutes);
