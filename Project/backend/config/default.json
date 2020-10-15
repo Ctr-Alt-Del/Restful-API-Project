@@ -1,0 +1,4 @@
+{
+    "mongoURI":"mongodb+srv://Xavier:MongoDB4121@cluster0.cumgm.mongodb.net/cms?retryWrites=true&w=majority",
+    "jwtSecret":"Secret"
+}
