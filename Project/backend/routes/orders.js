@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Order = require('../routes/models/order');
+const Order = require('../routes/models/Orders');
 
 router.get('/', (req, res) => {
     res.status(200).json({
